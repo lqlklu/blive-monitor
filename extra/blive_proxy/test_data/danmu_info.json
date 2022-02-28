@@ -1,0 +1,18 @@
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "group": "live",
+    "business_id": 0,
+    "refresh_row_factor": 0.125,
+    "refresh_rate": 100,
+    "max_delay": 5000,
+    "token": "VPcGymaef5_udUmo_sv94P0VTTckOiB08nrncajvK6blpu2VAn8a6fxt_1oFBMS_5pkN9oO_KjM87vquEMRXKq_04EydU9lge4b1yK5h6bZcNlQGgOPqXiT1RlL-Qfh_n7brtLQMoRtwzMY95Q==",
+    "host_list": [
+      { "host": "tx-sh-live-comet-01.chat.bilibili.com", "port": 2243, "wss_port": 443, "ws_port": 2244 },
+      { "host": "tx-gz-live-comet-04.chat.bilibili.com", "port": 2243, "wss_port": 443, "ws_port": 2244 },
+      { "host": "broadcastlv.chat.bilibili.com", "port": 2243, "wss_port": 443, "ws_port": 2244 }
+    ]
+  }
+}

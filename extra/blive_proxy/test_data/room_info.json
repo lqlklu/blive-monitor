@@ -1,0 +1,37 @@
+{
+  "code": 0,
+  "data": {
+    "80397": {
+      "area": "6",
+      "area_v2_id": "371",
+      "area_v2_name": "虚拟主播",
+      "area_v2_parent_id": "9",
+      "attentions": "0",
+      "background": "https://i0.hdslb.com/bfs/live/room_bg/c4f7b47bc591c0bbbbaa1ae8a84076fdb104e497.jpg",
+      "cover": "https://i0.hdslb.com/bfs/live-key-frame/keyframe02070102000000080397r2jj00.jpg",
+      "first_live_time": 1483568442,
+      "hidden_status": "0000-00-00 00:00:00",
+      "live_id": 207642019286301197,
+      "live_status": 1,
+      "live_time": "2022-02-06 21:35:02",
+      "lock_status": "0000-00-00 00:00:00",
+      "on_flag": "0",
+      "online": "1830024",
+      "room_shield": "1",
+      "room_silent": "0",
+      "roomid": "80397",
+      "round_status": "1",
+      "short_id": "510",
+      "tags": "唱歌,可爱,英雄联盟",
+      "title": "来力",
+      "try_time": "0000-00-00 00:00:00",
+      "uid": "7706705",
+      "uname": "阿梓从小就很可爱",
+      "user_cover": "https://i0.hdslb.com/bfs/live/new_room_cover/0e0ad4582c42a87d3faf1fcdae236174e4266346.jpg",
+      "verify": "",
+      "virtual": "1"
+    }
+  },
+  "message": "success",
+  "msg": "success"
+}

@@ -1,0 +1,51 @@
+{
+  "cmd": "SUPER_CHAT_MESSAGE_JPN",
+  "data": {
+    "background_bottom_color": "#2A60B2",
+    "background_color": "#EDF5FF",
+    "background_icon": "",
+    "background_image": "https://i0.hdslb.com/bfs/live/a712efa5c6ebc67bafbe8352d3e74b820a00c13e.png",
+    "background_price_color": "#7497CD",
+    "end_time": 1642769386,
+    "gift": {
+      "gift_id": 12000,
+      "gift_name": "醒目留言",
+      "num": 1
+    },
+    "id": "3069036",
+    "is_ranked": 0,
+    "medal_info": {
+      "anchor_roomid": 510,
+      "anchor_uname": "阿梓从小就很可爱",
+      "icon_id": 0,
+      "medal_color": "#6154c",
+      "medal_level": 26,
+      "medal_name": "小孩梓",
+      "special": "",
+      "target_id": 7706705
+    },
+    "message": "梓神，不可能唱不好",
+    "message_jpn": "梓神、うまく歌えないわけがない",
+    "price": 30,
+    "rate": 1000,
+    "start_time": 1642769326,
+    "time": 59,
+    "token": "5516FB95",
+    "ts": 1642769327,
+    "uid": "2305653",
+    "user_info": {
+      "face": "http://i0.hdslb.com/bfs/face/5eef7d7c747ca1a2ce178df75214f25326db6fc7.jpg",
+      "face_frame": "http://i0.hdslb.com/bfs/live/9b3cfee134611c61b71e38776c58ad67b253c40a.png",
+      "guard_level": 2,
+      "is_main_vip": 1,
+      "is_svip": 0,
+      "is_vip": 0,
+      "level_color": "#61c05a",
+      "manager": 0,
+      "title": "0",
+      "uname": "Schvvarzer",
+      "user_level": 20
+    }
+  },
+  "roomid": "80397"
+}
