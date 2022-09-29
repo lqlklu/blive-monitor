@@ -1,0 +1,50 @@
+{
+  "name": "danmuji",
+  "version": "0.1.0",
+  "author": {
+    "name": "lqlklu",
+    "email": "lqlklu@qq.com"
+  },
+  "description": "Blive danmu monitor.",
+  "homepage": "https://github.com/lqlklu/danmuji",
+  "main": "dist/main/index.js",
+  "workspaces": [
+    "packages/renderer",
+    "packages/main"
+  ],
+  "scripts": {
+    "build": "cd packages/main && pnpm build && cd ../renderer && pnpm build",
+    "pack": "electron-builder",
+    "pack:dir": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^21.0.0",
+    "electron-builder": "^23.3.3"
+  },
+  "build": {
+    "productName": "Danmuji",
+    "appId": "cn.lqlklu.danmuji",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist"
+    ],
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "AppImage",
+        "zip",
+        "tar.gz"
+      ],
+      "extraResources": {
+        "from": "./extra/linux/",
+        "to": "./",
+        "filter": [
+          "**/*"
+        ]
+      }
+    }
+  }
+}
