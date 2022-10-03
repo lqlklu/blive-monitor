@@ -9,7 +9,22 @@ export const useGiftStore = defineStore("gift", {
   },
   actions: {
     add(it: Gift) {
-      this.list.push(it);
+      const p = this.list.find((i) => {
+        if (i) {
+          if (i.giftName == it.giftName && i.user.id == it.user.id) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      });
+      if (p) {
+        p.num += it.num;
+      } else {
+        this.list.push(it);
+      }
     },
   },
 });

@@ -14,11 +14,18 @@ const props = defineProps<{
       <div class="top">
         <MedalView :medal="props.it.medal" />
         <span class="uname" :style="{ color: props.it.user.color || undefined }">{{ props.it.user.name }}</span>
-        <span class="price">{{ `${props.it.gold}` }}</span>
+        <span class="price">{{ props.it.gold > 0 ? `&${props.it.gold}` : `` }}</span>
       </div>
     </div>
     <div class="message-wrap">
-      <div class="message">{{ `${props.it.giftName} X ${props.it.num}` }}</div>
+      <div class="message">
+        <span class="gift-name">
+          {{ `${props.it.giftName}` }}
+        </span>
+        <span class="num">
+          {{ ` \u00D7 ${props.it.num}` }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
