@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
+import { ElButton, ElIcon } from "element-plus";
+import "element-plus/es/components/button/style/css";
+import { Close } from "@element-plus/icons-vue";
 
 import DanmuList from "@/components/DanmuList.vue";
 import SuperchatList from "@/components/SuperchatList.vue";
@@ -11,18 +14,13 @@ import { useLocalStorage, useWindowSize } from "@vueuse/core";
 import { useDanmuStore } from "@/stores";
 
 const props = defineProps<{
-  id?: number | undefined;
+  id: number;
 }>();
 
 const danmuStore = useDanmuStore();
 
-const watched = ref("");
+const { watched, title, uname } = useBlive(props.id);
 
-if (props.id) {
-  useBlive(props.id, watched);
-} else {
-  router.replace("/");
-}
 const onClose = () => {
   router.replace("/");
 };
@@ -39,8 +37,18 @@ const containerHeight = computed(() => height.value - headerHeight.value);
 <template>
   <div class="monitor">
     <div class="header" @click.stop="onClose" :style="{ height: `${headerHeight}px`, top: `0px` }">
-      <div class="close-button"></div>
-      <span class="watched">{{ `${watched}` }}</span>
+      <div class="close-button">
+        <ElIcon>
+          <Close />
+        </ElIcon>
+      </div>
+      <div class="content-l">
+        <span :class="['title']">{{ `${title}` }}</span>
+        <span :class="['watched']">{{ `${watched}` }}</span>
+      </div>
+      <div class="content-r">
+        <span>{{ `${uname}` }}</span>
+      </div>
     </div>
     <div class="container" :style="{ height: `${containerHeight}px`, top: `${headerHeight}px` }">
       <DanmuList :style="{ width: `${dmWidth}px` }" />
@@ -50,7 +58,7 @@ const containerHeight = computed(() => height.value - headerHeight.value);
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .monitor {
   height: 100%;
 }
@@ -58,34 +66,46 @@ const containerHeight = computed(() => height.value - headerHeight.value);
   height: 1.4rem;
   flex-grow: 0;
   background-color: rgb(34, 34, 34);
+  display: flex;
+  .content-l {
+    flex-grow: 1;
+    height: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+
+    span {
+      line-height: 100%;
+      margin: 0 0.5rem;
+    }
+  }
+  .content-r {
+    flex-grow: 0;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+
+    span {
+      line-height: 100%;
+      margin: 0 0.5rem;
+    }
+  }
 }
+
 .close-button {
   height: 100%;
-  width: 46px;
+  width: 42px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
+
 .close-button:hover {
   background-color: red;
 }
-.close-button::before {
-  /* content: "\eab8"; */
-  content: "X";
-}
-.watched {
-  height: 100%;
-}
+
 .container {
   position: absolute;
   width: 100%;
-}
-.divider {
-  background-color: gray;
-  width: 4px;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  cursor: col-resize;
 }
 </style>

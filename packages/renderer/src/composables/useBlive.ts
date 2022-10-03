@@ -1,14 +1,18 @@
-import type { Ref } from "vue";
+import { ref } from "vue";
 
 import { resolveGift, resolveSuperChatJpn, type BlivePacket } from "@/api";
 import { CONNECT_SUCC, decode, encode, getRoomInfo, HEARTBEAT, HEARTBEAT_REPLY, MESSAGE, resolveDanmu, resolveInt, resolveJson, USER_AUTH, resolveSuperChat } from "@/api";
 import { useDanmuStore, useGiftStore, useSuperchatStore } from "@/stores";
 import { useWebSocket } from "@/composables";
 
-export async function useBlive(roomId: number, watched: Ref<string>) {
+export function useBlive(roomId: number) {
   const danmuStore = useDanmuStore();
   const superchatStore = useSuperchatStore();
   const giftStore = useGiftStore();
+
+  const watched = ref("");
+  const title = ref("");
+  const uname = ref("");
 
   const onMessage = (message: any) => {
     // console.log("MESSAGE", message);
@@ -71,35 +75,44 @@ export async function useBlive(roomId: number, watched: Ref<string>) {
       default:
     }
   };
-  const info = await getRoomInfo(roomId);
-  console.log(info);
-  const { send } = useWebSocket(info.wssUrl, {
-    autoReconnect: true,
-    autoClose: true,
-    heartbeat: {
-      interval: 30 * 1000,
-      message: encode("", HEARTBEAT),
-    },
-    onConnected() {
-      send(
-        encode(
-          JSON.stringify({
-            roomid: info.roomId,
-            protover: 2,
-            platform: "web",
-            type: 2,
-            key: info.token,
-            // token: info.token,
-          }),
-          USER_AUTH
-        )
-      );
-    },
-    async onMessage(_, ev: MessageEvent<Blob>) {
-      const packets = await decode(ev.data);
-      packets.forEach((p) => {
-        onPacket(p);
+  getRoomInfo(roomId)
+    .then((info) => {
+      console.log(info);
+      title.value = info.title;
+      uname.value = info.uname;
+      const { send } = useWebSocket(info.wssUrl, {
+        autoReconnect: true,
+        autoClose: true,
+        heartbeat: {
+          interval: 30 * 1000,
+          message: encode("", HEARTBEAT),
+        },
+        onConnected() {
+          send(
+            encode(
+              JSON.stringify({
+                roomid: info.roomId,
+                protover: 2,
+                platform: "web",
+                type: 2,
+                key: info.token,
+                // token: info.token,
+              }),
+              USER_AUTH
+            )
+          );
+        },
+        async onMessage(_, ev: MessageEvent<Blob>) {
+          const packets = await decode(ev.data);
+          packets.forEach((p) => {
+            onPacket(p);
+          });
+        },
       });
-    },
-  });
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+
+  return { title, uname, watched };
 }
