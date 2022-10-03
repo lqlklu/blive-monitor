@@ -5,7 +5,7 @@ export type DanmuPadItem = Danmu & { count: number };
 
 export const useDanmuStore = defineStore("danmu", {
   state: () => {
-    const xMax = 5;
+    const xMax = 4;
     const yMax = 10;
     var list = new Array<DanmuPadItem>(xMax * yMax);
 

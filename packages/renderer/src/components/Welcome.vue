@@ -7,8 +7,9 @@ import { useLocalStorage } from "@vueuse/core";
 const roomId = useLocalStorage("roomId", -1);
 const roomIdText = ref(roomId.value >= 0 ? `${roomId.value}` : "");
 const enter = () => {
-  const roomid = parseInt(roomIdText.value);
-  router.push(`/monitor?room=${roomid}`);
+  const r = parseInt(roomIdText.value);
+  roomId.value = r;
+  router.push(`/${roomId.value}`);
 };
 const inputKeypress = (ev: KeyboardEvent) => {
   if (ev.key == "Enter") {

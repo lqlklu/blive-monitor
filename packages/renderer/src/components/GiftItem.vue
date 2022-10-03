@@ -12,7 +12,7 @@ const props = defineProps<{
   <div class="gift-item">
     <div class="top-wrap">
       <div class="top">
-        <MedalView :medal="props.it.medal" />
+        <MedalView class="medal" :medal="props.it.medal" />
         <span class="uname" :style="{ color: props.it.user.color || undefined }">{{ props.it.user.name }}</span>
         <span class="price">{{ props.it.gold > 0 ? `&${props.it.gold}` : `` }}</span>
       </div>
@@ -49,12 +49,16 @@ const props = defineProps<{
   line-height: 1;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.medal {
+  margin-left: 3px;
 }
 .uname {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  line-height: 1;
   display: inline;
   flex-grow: 1;
 }

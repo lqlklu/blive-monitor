@@ -11,7 +11,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  min-height: 100vh;
+  min-height: 600px;
+  min-width: 800px;
   color: white;
   background: rgb(30, 30, 30);
   transition: color 0.5s, background-color 0.5s;

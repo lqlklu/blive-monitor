@@ -36,8 +36,8 @@ const containerHeight = computed(() => height.value - headerHeight.value);
 
 <template>
   <div class="monitor">
-    <div class="header" @click.stop="onClose" :style="{ height: `${headerHeight}px`, top: `0px` }">
-      <div class="close-button">
+    <div class="header" :style="{ height: `${headerHeight}px`, top: `0px` }">
+      <div class="close-button" @click.stop="onClose">
         <ElIcon>
           <Close />
         </ElIcon>

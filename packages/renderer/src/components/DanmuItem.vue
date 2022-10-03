@@ -15,7 +15,7 @@ const props = defineProps<{
   <div class="danmu-item">
     <div class="top-wrap" :class="{ latest: danmuStore.isLatest(props.x, props.y) }">
       <div class="top">
-        <MedalView :medal="props.item?.medal" />
+        <MedalView class="medal" :medal="props.item?.medal" />
         <div class="uname" :style="{ color: props.item?.user.color || undefined }">{{ props.item?.user.name || "" }}</div>
         <span class="count">{{ props.item ? (props.item.count > 1 ? `\u00D7${props.item.count}` : ``) : `` }}</span>
       </div>
@@ -48,13 +48,16 @@ const props = defineProps<{
   line-height: 1;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.medal {
+  margin-right: 3px;
 }
 .uname {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  height: 1rem;
-  line-height: 1;
   display: inline;
   flex-grow: 1;
 }

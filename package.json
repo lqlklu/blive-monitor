@@ -1,12 +1,16 @@
 {
-  "name": "danmuji",
+  "name": "blive-monitor",
   "version": "0.1.0",
   "author": {
     "name": "lqlklu",
     "email": "lqlklu@qq.com"
   },
   "description": "Blive danmu monitor.",
-  "homepage": "https://github.com/lqlklu/danmuji",
+  "homepage": "https://github.com/lqlklu/blive-monitor",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/lqlklu/blive-monitor"
+  },
   "main": "dist/main/index.js",
   "workspaces": [
     "packages/renderer",
@@ -22,8 +26,8 @@
     "electron-builder": "^23.3.3"
   },
   "build": {
-    "productName": "Danmuji",
-    "appId": "cn.lqlklu.danmuji",
+    "productName": "BliveMonitor",
+    "appId": "cn.lqlklu.blive.monitor",
     "asar": true,
     "directories": {
       "output": "release"
@@ -35,7 +39,7 @@
       "category": "Utility",
       "target": [
         "AppImage",
-        "zip",
+        "pacman",
         "tar.gz"
       ],
       "extraResources": {

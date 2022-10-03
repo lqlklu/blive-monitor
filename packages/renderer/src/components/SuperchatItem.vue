@@ -12,7 +12,7 @@ const props = defineProps<{
   <div class="superchat-item">
     <div class="top-wrap">
       <div class="top">
-        <MedalView :medal="props.it.medal" />
+        <MedalView class="medal" :medal="props.it.medal" />
         <span class="uname" :style="{ color: props.it.user.color || undefined }">{{ props.it.user.name || "" }}</span>
         <span class="price">{{ `￥${props.it.price}` }}</span>
       </div>
@@ -25,7 +25,7 @@ const props = defineProps<{
 
 <style scoped>
 .superchat-item {
-  padding: 2px 0;
+  padding: 2px;
 }
 .top-wrap {
   padding: 4px 8px;
@@ -42,12 +42,16 @@ const props = defineProps<{
   line-height: 1;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.medal {
+  margin-left: 3px;
 }
 .uname {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  line-height: 1;
   display: inline;
   flex-grow: 1;
 }

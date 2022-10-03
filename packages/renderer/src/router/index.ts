@@ -11,10 +11,10 @@ const router = createRouter({
       component: Welcome,
     },
     {
-      path: "/monitor",
+      path: "/:id",
       name: "monitor",
       component: Monitor,
-      props: (route) => ({ id: parseInt(route.query.room as string) }),
+      props: (route) => ({ id: parseInt(route.params.id as string) }),
     },
   ],
 });

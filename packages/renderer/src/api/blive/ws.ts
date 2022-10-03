@@ -218,7 +218,8 @@ export function resolveGift(m: any): Gift {
     const medalJ = dataJ["medal_info"];
     const medalLevel = medalJ["medal_level"] as number;
     const medalName = medalJ["medal_name"] as string;
-    const medalColor = medalJ["medal_color"] as string;
+    // const medalColor = medalJ["medal_color"] as string;
+    const medalColor = undefined;
     medal = {
       level: medalLevel,
       name: medalName,
