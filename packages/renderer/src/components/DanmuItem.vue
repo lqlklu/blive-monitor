@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import type { Danmu } from "@/api";
 import MedalView from "@/views/MedalView.vue";
-import { useDanmuStore } from "@/stores/danmu";
+import { useDanmuStore, DanmuPadItem } from "@/stores/danmu";
 
 const danmuStore = useDanmuStore();
 
 const props = defineProps<{
-  item?: Danmu | null;
+  item?: DanmuPadItem;
   x: number;
   y: number;
 }>();
@@ -18,6 +17,7 @@ const props = defineProps<{
       <div class="top">
         <MedalView :medal="props.item?.medal" />
         <div class="uname" :style="{ color: props.item?.user.color || undefined }">{{ props.item?.user.name || "" }}</div>
+        <span class="count">{{ props.item ? (props.item.count > 1 ? `\u00D7${props.item.count}` : ``) : `` }}</span>
       </div>
     </div>
     <div class="message-wrap">
@@ -46,6 +46,8 @@ const props = defineProps<{
   margin: 0;
   padding: 0;
   line-height: 1;
+  display: flex;
+  flex-direction: row;
 }
 .uname {
   padding: 0;
@@ -54,6 +56,10 @@ const props = defineProps<{
   height: 1rem;
   line-height: 1;
   display: inline;
+  flex-grow: 1;
+}
+.count {
+  flex-grow: 0;
 }
 .message-wrap {
   padding: 4px 8px;

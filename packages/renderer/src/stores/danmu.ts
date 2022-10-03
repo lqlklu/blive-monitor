@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
 import type { Danmu, Medal } from "@/api";
 
+export type DanmuPadItem = Danmu & { count: number };
+
 export const useDanmuStore = defineStore("danmu", {
   state: () => {
     const xMax = 5;
     const yMax = 10;
-    var list = new Array<Danmu | undefined>(xMax * yMax);
+    var list = new Array<DanmuPadItem>(xMax * yMax);
 
     return {
       xMax,
@@ -17,7 +19,7 @@ export const useDanmuStore = defineStore("danmu", {
     };
   },
   getters: {
-    get(state): (x: number, y: number) => Danmu | undefined {
+    get(state): (x: number, y: number) => DanmuPadItem | undefined {
       return (x: number, y: number) => {
         const idx = x * state.yMax + y;
         return state.list[idx];
@@ -36,10 +38,25 @@ export const useDanmuStore = defineStore("danmu", {
   },
   actions: {
     add(it: Danmu) {
-      const nextIdx = this.xNext * this.yMax + this.yNext;
-      this.latest = nextIdx;
-      this.list[nextIdx] = it;
-      this.moveToNext();
+      const p = this.list.find((i) => {
+        if (i) {
+          if (i.message == it.message) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      });
+      if (p) {
+        p.count += 1;
+      } else {
+        const nextIdx = this.xNext * this.yMax + this.yNext;
+        this.latest = nextIdx;
+        this.list[nextIdx] = { ...it, count: 1 };
+        this.moveToNext();
+      }
     },
     moveToNext() {
       this.yNext += 1;
@@ -53,18 +70,6 @@ export const useDanmuStore = defineStore("danmu", {
     },
     setSize(size: number) {
       this.list.length = size;
-      // if (size < 1) {
-      //   size = 1;
-      // }
-      // if (this.list.length < size) {
-      //   for (var i = this.list.length; i < size; ++i) {
-      //     this.list.push(null);
-      //   }
-      // } else if (this.list.length > size) {
-      //   for (var i = size; i < this.list.length; ++i) {
-      //     this.list.pop();
-      //   }
-      // }
     },
     setXMax(v: number) {
       this.xMax = v < 1 ? 1 : v;
