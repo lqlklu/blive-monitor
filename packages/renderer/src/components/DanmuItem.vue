@@ -31,7 +31,7 @@ const props = defineProps<{
   padding: 1px 1px;
 }
 .top-wrap {
-  padding: 4px 8px;
+  padding: 4px;
   border-start-start-radius: 6px;
   border-start-end-radius: 6px;
   background-color: rgb(59, 59, 59);

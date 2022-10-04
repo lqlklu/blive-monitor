@@ -28,7 +28,7 @@ const props = defineProps<{
   padding: 2px;
 }
 .top-wrap {
-  padding: 4px 8px;
+  padding: 4px;
   border-start-start-radius: 6px;
   border-start-end-radius: 6px;
   background-color: rgb(59, 59, 59);
@@ -46,7 +46,7 @@ const props = defineProps<{
   align-items: center;
 }
 .medal {
-  margin-left: 3px;
+  margin-right: 3px;
 }
 .uname {
   padding: 0;

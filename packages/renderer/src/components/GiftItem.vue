@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { computed } from "vue";
+
 import MedalView from "@/views/MedalView.vue";
 
 import type { Gift } from "@/api";
@@ -6,6 +8,22 @@ import type { Gift } from "@/api";
 const props = defineProps<{
   it: Gift;
 }>();
+const price = computed(() => {
+  if (props.it.discountPrice > 0) {
+    return `\u{1F50B}${props.it.discountPrice / 100}`;
+  } else {
+    return "";
+  }
+  // if (props.it.price > 0) {
+  //   return `\u{1F50B}${props.it.price / 100}`;
+  // } else if (props.it.gold > 0) {
+  //   return `\u{1F50B}${props.it.gold}`;
+  // } else if (props.it.silver > 0) {
+  //   return `${props.it.silver}`;
+  // } else {
+  //   return "";
+  // }
+});
 </script>
 
 <template>
@@ -14,7 +32,7 @@ const props = defineProps<{
       <div class="top">
         <MedalView class="medal" :medal="props.it.medal" />
         <span class="uname" :style="{ color: props.it.user.color || undefined }">{{ props.it.user.name }}</span>
-        <span class="price">{{ props.it.gold > 0 ? `&${props.it.gold}` : `` }}</span>
+        <span class="price">{{ price }}</span>
       </div>
     </div>
     <div class="message-wrap">
@@ -35,7 +53,7 @@ const props = defineProps<{
   padding: 2px;
 }
 .top-wrap {
-  padding: 4px 8px;
+  padding: 4px;
   border-start-start-radius: 6px;
   border-start-end-radius: 6px;
   background-color: rgb(59, 59, 59);
@@ -53,7 +71,7 @@ const props = defineProps<{
   align-items: center;
 }
 .medal {
-  margin-left: 3px;
+  margin-right: 3px;
 }
 .uname {
   padding: 0;

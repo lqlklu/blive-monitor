@@ -5,7 +5,7 @@ import { Medal, medalColor } from "@/api";
 const props = defineProps<{
   medal?: Medal;
 }>();
-const bgColor = computed(() => props.medal?.color || medalColor(props.medal?.level || 0));
+const color = computed(() => medalColor(props.medal?.level || 0));
 </script>
 
 <template>
@@ -13,8 +13,8 @@ const bgColor = computed(() => props.medal?.color || medalColor(props.medal?.lev
     v-if="props.medal && props.medal.level != 0"
     class="medal"
     :style="{
-      backgroundColor: bgColor,
-      borderColor: bgColor,
+      borderColor: color.border,
+      backgroundImage: `linear-gradient(45deg, ${color.start || color.border}, ${color.end || color.border})`,
     }"
   >
     <div class="label">
@@ -25,7 +25,7 @@ const bgColor = computed(() => props.medal?.color || medalColor(props.medal?.lev
     <div
       class="level"
       :style="{
-        color: bgColor,
+        color: color.start || color.border,
       }"
     >
       {{ props.medal?.level }}
@@ -53,7 +53,6 @@ const bgColor = computed(() => props.medal?.color || medalColor(props.medal?.lev
     align-items: center;
     min-width: 12px;
     padding: 0 4px;
-    color: white;
     border-top-left-radius: 1px;
     border-bottom-left-radius: 1px;
 
@@ -65,6 +64,7 @@ const bgColor = computed(() => props.medal?.color || medalColor(props.medal?.lev
   .level {
     width: 16px;
     text-align: center;
+    color: gray;
     background-color: white;
     border-top-left-radius: 1px;
     border-bottom-right-radius: 1px;

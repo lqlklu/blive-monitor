@@ -29,6 +29,7 @@ export interface Gift {
   user: User;
   medal?: Medal;
   price: number;
+  discountPrice: number;
   gold: number;
   silver: number;
   num: number;
@@ -230,6 +231,7 @@ export function resolveGift(m: any): Gift {
   const userId = dataJ["uid"] as number;
   const user: User = { name: userName, id: userId };
   const price = dataJ["price"] as number;
+  const discountPrice = dataJ["discount_price"] as number;
   const gold = dataJ["gold"] as number;
   const silver = dataJ["silver"] as number;
   return {
@@ -237,6 +239,7 @@ export function resolveGift(m: any): Gift {
     user,
     medal,
     price,
+    discountPrice,
     gold,
     silver,
     num,

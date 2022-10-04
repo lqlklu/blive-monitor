@@ -1,8 +1,9 @@
 import { app, BrowserWindow } from "electron";
 
-import engine from "./engine";
+import { Engine } from "./engine";
 
 app.whenReady().then(() => {
+  const engine = new Engine();
   engine.start();
 
   const win = new BrowserWindow({
@@ -20,4 +21,8 @@ app.whenReady().then(() => {
     win.loadURL(process.env.VITE_DEV_SERVER_URL as string);
     win.webContents.openDevTools();
   }
+
+  app.on("quit", () => {
+    engine.stop();
+  });
 });

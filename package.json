@@ -39,7 +39,6 @@
       "category": "Utility",
       "target": [
         "AppImage",
-        "pacman",
         "tar.gz"
       ],
       "extraResources": {
